@@ -1,0 +1,32 @@
+Config {
+  font = "xft:Inconsolata:size=11:antialias=true",
+  -- Colors taken from http://ethanschoonover.com/solarized
+  bgColor = "#002b36",
+  fgColor = "#839496",
+  border = NoBorder,
+  borderColor = "#586e75",
+  position = Top,
+  lowerOnStart = True,
+
+  commands = [
+    Run Cpu [
+      "-L",
+      "25",
+      "-H",
+      "50",
+      "--normal",
+      "#b58900",
+      "--high",
+      "#dc322f"
+    ] 10,
+    Run Memory ["-t","Mem: <usedratio>%"] 10,
+    Run Date "%a %b %_d %Y %l:%M %p" "date" 10,
+    Run Weather "KSFO" ["-t", "<tempF>° <rh>% <skyCondition>"] 18000,
+    Run StdinReader
+  ],
+
+  sepChar = "%",
+  alignSep = "}{",
+
+  template = " %StdinReader% }{ %cpu% | %memory% | %KSFO% | <fc=#cb4b16>%date%</fc> "
+}

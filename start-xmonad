@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Load X resources (fixes some font issues)
+xrdb -merge .Xresources
+
+# Start compositing to support transparency.
+xcompmgr -n &
+
+# To set your backgrounds, run nitrogren /path/to/images.
+nitrogen --restore &
+
+# Run the gnome-keyring-daemon to avoid issues you otherwise may encounter
+# when using gnome applications which expect access to the keyring, such
+# as Empathy. This prevents prompts you may otherwise get for invalid
+# certificates and the like.
+gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh
+
+# Swap the thumb button (9) and middle button (2) on my MS mouse.
+xmodmap -e "pointer = 1 9 3 4 5 6 7 8 2 10 11 12 13"
+
+# Now, finally, start xmonad
+exec xmonad
