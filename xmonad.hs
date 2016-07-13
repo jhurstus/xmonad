@@ -31,6 +31,7 @@ myKeyBindings =
     ((mod1Mask, xK_b), sendMessage ToggleStruts)
     , ((mod1Mask, xK_a), sendMessage MirrorShrink)
     , ((mod1Mask, xK_z), sendMessage MirrorExpand)
+    , ((mod1Mask, xK_p), spawn "dmenu_run -fn \"Inconsolata-11\" -i -p \">\" -nb \"#002b36\" -nf \"#839496\" -sb \"#859900\" -sf \"#002b36\"")
     , ((mod1Mask, xK_u), focusUrgent)
     , ((mod1Mask .|. controlMask, xK_space), sendMessage (Toggle "Full"))
     , ((mod1Mask .|. controlMask, xK_l), spawn "gnome-screensaver-command -l")
