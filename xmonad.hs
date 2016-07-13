@@ -1,6 +1,7 @@
 import XMonad
 import XMonad.Actions.Plane
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ICCCMFocus
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Circle
@@ -60,11 +61,11 @@ main = do
   , manageHook = manageHook defaultConfig
       <+> composeAll myManagementHooks
       <+> manageDocks
-  , logHook = dynamicLogWithPP $ xmobarPP
+  , logHook = takeTopFocus >> dynamicLogWithPP (xmobarPP
     { ppOutput = hPutStrLn xmproc
     , ppTitle = xmobarColor "#839496" "" . shorten 80
-    , ppCurrent = xmobarColor "#2aa198" "" . wrap "[" "]" 
-    , ppVisible = xmobarColor "#268bd2" "" . wrap "(" ")" 
-    , ppUrgent = xmobarColor "#cb4b16" "" . wrap "{" "}" 
-    }
+    , ppCurrent = xmobarColor "#2aa198" "" . wrap "[" "]"
+    , ppVisible = xmobarColor "#268bd2" "" . wrap "(" ")"
+    , ppUrgent = xmobarColor "#cb4b16" "" . wrap "{" "}"
+    })
   } `additionalKeys` myKeyBindings
