@@ -42,8 +42,9 @@ myKeyBindings =
     , ((0, 0x1008FF12), spawn "~/.xmonad/mute")
     , ((0, 0x1008FF11), spawn "amixer -q set Master 5%-")
     , ((0, 0x1008FF13), spawn "amixer -q set Master 5%+")
-    , ((mod1Mask .|. shiftMask, xK_F12), spawn "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
-    , ((mod1Mask .|. shiftMask, xK_F11), spawn "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart")
+    , ((mod1Mask .|. shiftMask, xK_F12), spawn "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.PowerOff\" boolean:true")
+    , ((mod1Mask .|. shiftMask, xK_F11), spawn "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.Reboot\" boolean:true")
+
   ]
 
 myManagementHooks :: [ManageHook]
