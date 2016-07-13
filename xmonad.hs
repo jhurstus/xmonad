@@ -39,9 +39,9 @@ myKeyBindings =
     , ((mod1Mask, xK_g), spawn "google-chrome")
     , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
     , ((0, xK_Print), spawn "scrot")
-    , ((0, 0x1008FF12), spawn "~/.xmonad/mute")
-    , ((0, 0x1008FF11), spawn "amixer -q set Master 5%-")
-    , ((0, 0x1008FF13), spawn "amixer -q set Master 5%+")
+    , ((0, 0x1008FF12), spawn "pactl set-sink-mute 1 toggle")
+    , ((0, 0x1008FF11), spawn "pactl set-sink-volume 1 -5%")
+    , ((0, 0x1008FF13), spawn "pactl set-sink-volume 1 +5%")
     , ((mod1Mask .|. shiftMask, xK_F12), spawn "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.PowerOff\" boolean:true")
     , ((mod1Mask .|. shiftMask, xK_F11), spawn "dbus-send --system --print-reply --dest=org.freedesktop.login1 /org/freedesktop/login1 \"org.freedesktop.login1.Manager.Reboot\" boolean:true")
 
