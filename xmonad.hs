@@ -54,7 +54,6 @@ myManagementHooks = [
 
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobarrc"
-  xmproc <- spawnPipe "xsetroot -solid \"#002b36\""
   xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
     focusedBorderColor = "#cb4b16"
   , normalBorderColor = "#93a1a1"
