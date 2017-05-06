@@ -37,9 +37,10 @@ myKeyBindings =
     , ((mod1Mask, xK_g), spawn "google-chrome")
     , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
     , ((0, xK_Print), spawn "scrot")
-    , ((0, 0x1008FF12), spawn "~/.xmonad/mute")
-    , ((0, 0x1008FF11), spawn "amixer -q set Master 5%-")
-    , ((0, 0x1008FF13), spawn "amixer -q set Master 5%+")
+    , ((0, 0x1008FF12), spawn "~/bin/mute")
+    , ((0, 0x1008FF11), spawn "amixer -q -D pulse sset Master 5%-")
+    , ((0, 0x1008FF13), spawn "amixer -q -D pulse sset Master 5%+")
+    , ((mod1Mask, xK_s), spawn "~/bin/toggleaudio")
     , ((mod1Mask .|. shiftMask, xK_F12), spawn "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
     , ((mod1Mask .|. shiftMask, xK_F11), spawn "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart")
   ]
