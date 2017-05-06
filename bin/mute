@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# toggles mute on current running pulseaudio sink
+
+CURRENT_SINK=$(pactl list sinks | ack --A 10 --B 1 'State: RUNNING')
+SINK_ID=$(echo $CURRENT_SINK | ack --output "\$1" "Sink #(\d+)" | head -n 1)
+MUTED=$(echo $CURRENT_SINK | ack -o "Mute: yes" | head -n 1)
+if [[ -z $MUTED ]] ; then
+	pactl set-sink-mute $SINK_ID 1
+else
+	pactl set-sink-mute $SINK_ID 0
+fi

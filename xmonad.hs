@@ -39,10 +39,10 @@ myKeyBindings =
     , ((mod1Mask, xK_g), spawn "google-chrome")
     , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
     , ((0, xK_Print), spawn "scrot")
-    , ((0, 0x1008FF12), spawn "~/bin/mute")
+    , ((0, 0x1008FF12), spawn "~/.xmonad/bin/mute")
     , ((0, 0x1008FF11), spawn "amixer -q -D pulse sset Master 5%-")
     , ((0, 0x1008FF13), spawn "amixer -q -D pulse sset Master 5%+")
-    , ((mod1Mask, xK_s), spawn "~/bin/toggleaudio")
+    , ((mod1Mask, xK_s), spawn "~/.xmonad/bin/toggleaudio")
     , ((mod1Mask .|. shiftMask, xK_F12), spawn "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Stop")
     , ((mod1Mask .|. shiftMask, xK_F11), spawn "dbus-send --system --print-reply --dest=\"org.freedesktop.ConsoleKit\" /org/freedesktop/ConsoleKit/Manager org.freedesktop.ConsoleKit.Manager.Restart")
   ]
@@ -54,7 +54,7 @@ myManagementHooks = [
 
 main = do
   spawn "xsetroot -solid '#002b36'"
-  xmproc <- spawnPipe "~/bin/xmobar ~/.xmonad/xmobarrc"
+  xmproc <- spawnPipe "~/.xmonad/bin/xmobar ~/.xmonad/xmobarrc"
   xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
     focusedBorderColor = "#cb4b16"
   , normalBorderColor = "#93a1a1"
@@ -67,8 +67,8 @@ main = do
   , logHook = takeTopFocus >> dynamicLogWithPP (xmobarPP
     { ppOutput = hPutStrLn xmproc
     , ppTitle = xmobarColor "#839496" "" . shorten 80
-    , ppCurrent = xmobarColor "#2aa198" "" . wrap "[" "]" 
-    , ppVisible = xmobarColor "#268bd2" "" . wrap "(" ")" 
-    , ppUrgent = xmobarColor "#cb4b16" "" . wrap "{" "}" 
+    , ppCurrent = xmobarColor "#2aa198" "" . wrap "[" "]"
+    , ppVisible = xmobarColor "#268bd2" "" . wrap "(" ")"
+    , ppUrgent = xmobarColor "#cb4b16" "" . wrap "{" "}"
     })
   } `additionalKeys` myKeyBindings

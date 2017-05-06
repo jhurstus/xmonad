@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# toggles pulseaudio output between headphones and usb speakers
+
+CURRENT=$(pactl list sinks | ack --A 1 "State: RUNNING" | ack --output='$1' "Name: (.*)")
+
+HEADPHONES="alsa_output.pci-0000_00_1b.0.analog-stereo"
+SPEAKERS="alsa_output.usb-Audioengine_Audioengine_2_-00.iec958-stereo"
+
+if [ "$CURRENT" = "$SPEAKERS" ] ; then
+  paswitch "$HEADPHONES"
+else
+  paswitch "$SPEAKERS"
+fi
